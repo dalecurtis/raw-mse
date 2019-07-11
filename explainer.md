@@ -10,21 +10,21 @@ We propose a a couple of [Media Source Extensions byte stream format](https://ww
 For audio, we propose adding support for 'audio/wav' to handle raw audio. For non-raw audio data we already have 'audio/aac' and 'audio/mp3'.
 
 # Video Proposal
-For video, we propose adding support for 'video/raw' which would use a simple 20-byte header based on [IVF](https://wiki.multimedia.cx/index.php/IVF) to encapsulate both raw and encoded samples.
+For video, we propose adding support for 'video/raw' which would use a simple 23-byte header based on [IVF](https://wiki.multimedia.cx/index.php/IVF) to encapsulate both raw and encoded samples.
 
 ```
 bytes 0-3    FourCC (e.g., 'VP80', 'I420', 'AV01', etc)
 bytes 4-5    visible width in pixels
 bytes 6-7    visible height in pixels
-bytes 8-11   64-bit presentation timestamp
-byte  12     color space primary id.
-byte  13     color space transfer id.
-byte  14     color space matrix id.
-byte  15     color space full range flag.
-bytes 16-19  size of frame in bytes (not including the header)
+bytes 8-15   64-bit presentation timestamp
+byte  16     color space primary id.
+byte  17     color space transfer id.
+byte  18     color space matrix id.
+byte  19     color space full range flag.
+bytes 20-23  size of frame in bytes (not including the header)
 ```
 
-Sample type would be determined by the fourcc embedded in the header; e.g., I420 for planar YUV 4:2:0, P010 for planar 10bit YUV 4:2:0, [etc](https://docs.microsoft.com/en-us/windows/desktop/medfound/video-fourccs). For encoded data, we would use 'AV01', 'VP08', 'VP09', and 'H264'.
+Sample type would be determined by the fourcc embedded in the header; e.g., I420 for planar YUV 4:2:0, P010 for planar 10bit YUV 4:2:0, [etc](https://docs.microsoft.com/en-us/windows/desktop/medfound/video-fourccs). For encoded data, we would use 'AV01', 'VP80', 'VP90', and 'H264'.
 
 Color space values will come from the [AV1 codec specification](https://aomediacodec.github.io/av1-isobmff/#codecsparam).
 
