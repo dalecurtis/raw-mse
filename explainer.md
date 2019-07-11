@@ -31,7 +31,7 @@ Color space values will come from the [AV1 codec specification](https://aomediac
 
 # Use cases
 
-* Current adapative streaming libraries are transmuxing from MPEG2-TS to ISOBMFF / MP4 to handle HLS playback using Media Source Extensions. This would allow them to skip the remxuing step.
+* Current adaptive streaming libraries are transmuxing from MPEG2-TS to ISOBMFF / MP4 to handle HLS playback using Media Source Extensions. This would allow them to skip the remuxing step.
 * Experimental codecs could be launched as downloadable WebAssembly/JS packages that individual sites can iterate and experiment more quickly with.
 * Developers could add support in WebAssembly/JS for obscure or otherwise unsupported codecs; E.g., one could imagine a web based version of ffmpeg's ffplay tool offering support for all of its codecs through this API.
 
@@ -62,4 +62,5 @@ Color space values will come from the [AV1 codec specification](https://aomediac
 
 # Open Questions / Notes / Links
 * Is it folly to use fourcc codes for pixel formats? These don't seem standardized. ffmpeg has [one definition](https://cs.chromium.org/chromium/src/third_party/ffmpeg/libavcodec/raw.c?l=31) and Microsoft [another definition](https://docs.microsoft.com/en-us/windows/desktop/medfound/video-fourccs).
-* Unfortunately opus and vorbis don't have specified MPEG1 packetizations -- only  ogg, mp4, and webm. So if developers want to use demuxed Opus or Vorbis it will need to be in an ISO-BMFF or webm container unless we add an Ogg demuxer to MSE.
+* Unfortunately opus and vorbis don't have specified MPEG1 packetizations -- only ogg, mp4, and webm. So if developers want to use demuxed Opus or Vorbis it will need to be in an ISO-BMFF or webm container unless we add an Ogg demuxer to MSE.
+* Do we need stride data for raw formats? Requiring all data to be packed into the visible range may have performance implications.
