@@ -44,7 +44,7 @@ Color space values will come from the [AV1 codec specification](https://aomediac
 
   mse.addEventListener('sourceopen', function() {
     let audio = mse.addSourceBuffer('audio/wav');
-    let video = mse.addSourceBuffer('video/ivf');
+    let video = mse.addSourceBuffer('video/raw');
 
     video.addEventListener('updateend', function() {
       video.appendBuffer(videoData);
