@@ -63,4 +63,4 @@ Color space values will come from the [AV1 codec specification](https://aomediac
 # Open Questions / Notes / Links
 * Is it folly to use fourcc codes for pixel formats? These don't seem standardized. ffmpeg has [one definition](https://cs.chromium.org/chromium/src/third_party/ffmpeg/libavcodec/raw.c?l=31) and Microsoft [another definition](https://docs.microsoft.com/en-us/windows/desktop/medfound/video-fourccs).
 * Unfortunately opus and vorbis don't have specified MPEG1 packetizations -- only ogg, mp4, and webm. So if developers want to use demuxed Opus or Vorbis it will need to be in an ISO-BMFF or webm container unless we add an Ogg demuxer to MSE.
-* Do we need stride data for raw formats? Requiring all data to be packed into the visible range may have performance implications.
+* Do we need stride data for raw formats? Requiring all data to be packed into the visible range may have performance implications. Just having a coded size field and formula for how that maps to plane sizes probably solves most issues.
