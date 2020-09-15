@@ -1,5 +1,10 @@
 # JSON/RAW MediaSource Byte Streams Explainer
 
+# Obsolete
+
+This approach is no longer recommended. I instead recommend waiting for standardized [WebCodecs](https://wicg.github.io/web-codecs/) types. We can then extend addSourceBuffer() to take a WebCodecs configuration dictionary and appendBuffer() to take arrays of encoded and decoded types (EncodedAudioChunk, EncodedVideoChunk, VideoFrame, AudioBuffer). Using JavaScript types avoid the need for custom packings.
+
+
 # Introduction
 The world of audio and video codecs and container formats is diverse. For reasons of security, licensing, size restrictions, and more browsers can't intrinsically support all codecs and formats for audio / video playback. However that doesn't mean we can't offer a way for developers to plug decoders and/or demuxers written in JavaScript or WebAssembly into our media pipelines.
 
